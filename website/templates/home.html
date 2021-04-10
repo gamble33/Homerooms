@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <!-- content -->
+    <h1 class="h1" align="center">Home</h1>
+
+    {% for user in users_list %}
+        <div class="card" style="width: 20rem;">
+            <div class="card-body">
+                <h4 class="card-title">{{ user.email }}</h4>
+                <h6 class="card-subtitle mb-2 text-muted">{{ user.id }}</h6>
+                <p class="card-text ">{{ user.password }}</p>
+                <h6 class="card-subtitle mb-2 text-muted">Teacher: {{ user.is_teacher }}</h6>
+                <button type="submit" class="btn btn-dribbble" onClick="deleteUser({{ user.id }})">Delete</button>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}

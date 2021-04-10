@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Already logged in...{% endblock %}
+
+{% block content %}
+    <div class="container align-items-center" align="center">
+        <div class="col">
+            <h1 class="h1 text-center">You are already logged in...</h1>
+            <a class="nav-link-active" href="/">Click here to return to home</a>
+            <div class="col">
+                <a class="nav-link-active" href="/auth/logout"><small class="text-muted">Click here to
+                    logout</small></a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

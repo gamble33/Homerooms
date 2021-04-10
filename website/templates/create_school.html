@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Create School{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <form method="POST">
+
+                <h4 class="h4 text-lg-center" align="center"><small class="text-muted">Create School</small></h4>
+
+                <div class="form-group">
+                    <label for="name">School Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter School Name"/>
+                    <small id="emailHelp" class="form-text text-muted">Please use the full name of your school (not abbreviations)</small>
+                </div>
+
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-chet-input" type="checkbox" id="remember-me" name="remember-me">
+                        Remember me
+                        <span class="form-check-sign">
+                            <span class="check"></span>
+                        </span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-behance btn-block">Create</button>
+
+            </form>
+        </div>
+    </div>
+{% endblock %}
