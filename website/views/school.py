@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, request
-from flask_login import current_user
+from flask_login import current_user, login_required
 
 from website import database
 from website.models.User import Teacher
@@ -20,8 +20,8 @@ def checkUserTeacher():
 
 
 @school.route('/', methods=['GET'])
+@login_required
 def school_home():
-
     # TODO: Figure out how to not copy paste this code
     if not checkUserTeacher():
         return redirect(url_for('views.home'))
@@ -29,12 +29,16 @@ def school_home():
     teacher = Teacher.query.filter_by(id=current_user.id).first()
     print(teacher)
 
+    # If the current user (teacher) is a part of school
+    if current_user.school_id:
+        return render_template("school_home.html")
+
     return redirect(url_for('school.create_school'))
 
 
 @school.route('/create-school', methods=['GET', 'POST'])
+@login_required
 def create_school():
-
     if not checkUserTeacher():
         return redirect(url_for('views.home'))
 
@@ -45,8 +49,5 @@ def create_school():
 
     if request.method == 'POST':
         school_name = request.form.get('name')
-
-
-
 
     return render_template("create_school.html", user=current_user)
