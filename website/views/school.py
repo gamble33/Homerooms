@@ -39,6 +39,7 @@ def register_school(school_name):
 @school.route('/', methods=['GET'])
 @login_required
 def school_home():
+
     # TODO: Figure out how to not copy paste this code
     if not checkUserTeacher():
         return redirect(url_for('views.home'))

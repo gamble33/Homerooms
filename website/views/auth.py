@@ -8,6 +8,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from website import database
 from website.models.User import User, Student, Teacher
+from website.models.School import School
 
 auth = Blueprint('auth', __name__)
 
@@ -116,28 +117,41 @@ def sign_up():
         email = request.form.get('email')
         password = request.form.get('password')
         confirm_password = request.form.get('confirm-password')
+        school_id = request.form.get('school-id')
 
         remember_user = request.form.get('remember-me') == 'on'
         """ If the user should be remembered after login or not """
 
         is_admin = False
 
+        # Validate School Code
+        school = School.query.filter_by(id=school_id).first()
+
         # Sign up was validated and account can be created
         if validate_sign_up(email, password, confirm_password):
-            # Creates new Student Object
-            hashed_password = generate_password_hash(password, method='sha256')
-            new_user = User(email=email, password=hashed_password, is_teacher=False)
 
-            # Submits Student Object to database
-            create_user(new_user, remember_user)
+            # For checking If the code of school that student entered doesn't exist
+            if school:
 
-            # Creates student instance (Student instance and user instance have the same primary keys
-            new_student = Student(data='Students are fat', user_id=new_user.id)
+                # For checking If the code of school that student entered doesn't exist
+                # Creates new Student Object
+                hashed_password = generate_password_hash(password, method='sha256')
+                new_user = User(email=email, password=hashed_password, is_teacher=False, school_id=school_id)
 
-            database.session.add(new_student)
-            database.session.commit()
+                # Submits Student Object to database
+                create_user(new_user, remember_user)
 
-            return redirect(url_for('views.home'))
+                # Creates student instance (Student instance and user instance have the same primary keys
+                new_student = Student(data='Students are fat', user_id=new_user.id)
+
+                database.session.add(new_student)
+                database.session.commit()
+
+                return redirect(url_for('views.home'))
+
+            # School doesn't exist (School code entered is not valid)
+            else:
+                flash('School code is not valid', category='error')
 
     return render_template("sign_up.html", user=current_user)
 
