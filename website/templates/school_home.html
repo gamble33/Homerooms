@@ -4,16 +4,31 @@
 
 {% block content %}
 
-    <div class="card card-nav-tabs">
-        <div class="card-header card-header-warning">
-            Featured
+    <div class="row">
+        <div class="col">
+            <div class="card card-nav-tabs">
+                <div class="card-header card-header-warning">
+                    School
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">{{ school.name }}</h4>
+                    <a href="/school/create-school" class="btn btn-primary">Create School</a>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-            <h4 class="card-title">School</h4>
-            <p class="card-text">ID: {{ user.school_id }}</p>
-            <a href="/school/create-school" class="btn btn-primary">Create School</a>
+        <div class="col">
+            <div class="card card-nav-tabs">
+                <div class="card-header card-header-warning">
+                    School
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">{{ school.name }}</h4>
+                    <a href="/school/see-students" class="btn btn-primary">See Students</a>
+                </div>
+            </div>
         </div>
     </div>
+
 
 
 {% endblock %}

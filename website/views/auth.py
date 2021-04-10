@@ -114,6 +114,8 @@ def sign_up():
         return render_template("error_pages/already_logged_in.html", user=current_user)
 
     if request.method == 'POST':
+
+        name = request.form.get('name')
         email = request.form.get('email')
         password = request.form.get('password')
         confirm_password = request.form.get('confirm-password')
@@ -136,7 +138,7 @@ def sign_up():
                 # For checking If the code of school that student entered doesn't exist
                 # Creates new Student Object
                 hashed_password = generate_password_hash(password, method='sha256')
-                new_user = User(email=email, password=hashed_password, is_teacher=False, school_id=school_id)
+                new_user = User(name=name, email=email, password=hashed_password, is_teacher=False, school_id=school_id)
 
                 # Submits Student Object to database
                 create_user(new_user, remember_user)
@@ -163,6 +165,7 @@ def sign_up_teacher():
 
     if request.method == 'POST':
 
+        name = request.form.get('name')
         email = request.form.get('email')
         password = request.form.get('password')
         confirm_password = request.form.get('confirm-password')
@@ -176,7 +179,7 @@ def sign_up_teacher():
         if validate_sign_up(email, password, confirm_password):
             # Creates new Teacher Object
             hashed_password = generate_password_hash(password, method='sha256')
-            new_user = User(email=email, password=hashed_password, is_admin=is_admin, is_teacher=True)
+            new_user = User(name=name, email=email, password=hashed_password, is_admin=is_admin, is_teacher=True)
 
             # Submits User Object to database
             create_user(new_user, remember_user)

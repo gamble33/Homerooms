@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}See Students{% endblock %}
+
+{% block content %}
+
+    {% for current_user in student_user.keys() %}
+
+        <div class="card card-nav-tabs">
+            <div class="card-header card-header-warning">
+                {{ school.name }}
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">{{ current_user.name }}</h4>
+                <a href="/school/see-students" class="btn btn-primary">See Student</a>
+            </div>
+        </div>
+
+    {% endfor %}
+
+{% endblock %}

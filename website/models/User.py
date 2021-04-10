@@ -23,6 +23,11 @@ class User(database.Model, UserMixin):
     Primary key (integer id)
     """
 
+    name: str = database.Column(database.String(150))
+    """
+    Name of the user
+    """
+
     email: str = database.Column(database.String(150), unique=True)
     """
     Unique email (str, max 150 chars)
