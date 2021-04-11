@@ -79,4 +79,11 @@ class Student(database.Model):
 
     user_id = database.Column(database.Integer, database.ForeignKey('user.id'))
 
+    homeroom_id = database.Column(database.Integer, database.ForeignKey('homeroom.id'))
+    """
+    Foreign key of the homeroom that the candidate is a part of
+    """
+
     data: str = database.Column(database.String(150))
+
+

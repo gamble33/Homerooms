@@ -3,7 +3,7 @@ from flask_login import current_user, login_required
 
 from website import database
 from website.models.User import Teacher, Student, User
-from website.models.School import School
+from website.models.School import School, Homeroom
 
 school = Blueprint('school', __name__)
 
@@ -39,7 +39,6 @@ def register_school(school_name):
 @school.route('/', methods=['GET'])
 @login_required
 def school_home():
-
     # TODO: Figure out how to not copy paste this code
     if not checkUserTeacher():
         return redirect(url_for('views.home'))
@@ -73,6 +72,7 @@ def create_school():
 
     return render_template("create_school.html", user=current_user)
 
+
 @school.route('/see-students', methods=['GET'])
 @login_required
 def see_students():
@@ -99,3 +99,21 @@ def see_students():
 
     return render_template("school_students_list.html", user=current_user, users=users, school=_school,
                            student_user=student_user)
+
+
+@school.route('/see-homerooms', methods=['GET'])
+@login_required
+def see_homerooms():
+    """
+    List of all homerooms in a school
+    :return:
+    """
+
+    if not current_user.school_id:
+        return redirect(url_for('school.create_school'))
+
+    _school = School.query.filter_by(id=current_user.school_id).first()
+
+    homerooms = Homeroom.query.filter_by(school_id=_school.id)
+
+    return render_template("school_homerooms_list.html", user=current_user, homerooms=homerooms, school=_school)

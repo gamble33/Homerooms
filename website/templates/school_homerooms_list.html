@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}See Homerooms{% endblock %}
+
+{% block content %}
+
+    {% for homeroom in homerooms %}
+
+        <div class="card card-nav-tabs">
+            <div class="card-header card-header-warning">
+                {{ homeroom.name }}
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">{{ current_user.name }}</h4>
+                <a href="/school/see-students" class="btn btn-primary">See Homeroom</a>
+            </div>
+        </div>
+
+    {% endfor %}
+
+    <div class="card card-nav-tabs">
+            <div class="card-header card-header-warning">
+                {{ school.name }}
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">Create a new Homeroom</h4>
+                <a href="/school/see-students" class="btn btn-behance">Create Homeroom</a>
+            </div>
+        </div>
+
+{% endblock %}
