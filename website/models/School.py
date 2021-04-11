@@ -18,6 +18,14 @@ class School(database.Model):
 
 
 class Homeroom(database.Model):
+    """
+    Homeroom / Tutor group, contains a set of students \n
+    id - primary key \n
+    name - name of homeroom (e.g. '10C') \n
+    students - database relationship to 'Student' \n
+    school_id - the id of the school that homeroom is a part of \n
+    """
+
     id: int = database.Column(database.Integer, primary_key=True)
 
     name: str = database.Column(database.String(150))

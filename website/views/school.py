@@ -117,3 +117,29 @@ def see_homerooms():
     homerooms = Homeroom.query.filter_by(school_id=_school.id)
 
     return render_template("school_homerooms_list.html", user=current_user, homerooms=homerooms, school=_school)
+
+
+@school.route('/create-homeroom', methods=['GET', 'POST'])
+@login_required
+def create_homeroom():
+    """
+    Create and register a homeroom instance to the database
+    :return:
+    """
+
+    if not current_user.school_id:
+        return redirect(url_for('school.create_school'))
+
+    _school = School.query.filter_by(id=current_user.school_id).first()
+
+    if request.method == 'POST':
+        homeroom_name = request.form.get('name')
+
+        new_homeroom = Homeroom(name=homeroom_name, school_id=_school.id)
+
+        database.session.add(new_homeroom)
+        database.session.commit()
+
+        return redirect(url_for('school.see_homerooms'))
+
+    return render_template("school_create_homeroom.html", user=current_user)

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Create Homeroom{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <form method="POST">
+
+                <h4 class="h4 text-lg-center" align="center"><small class="text-muted">Create Homeroom</small></h4>
+
+                <div class="form-group">
+                    <label for="name">Homeroom Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Homeroom Name"/>
+                    <small id="emailHelp" class="form-text text-muted">Example names '7A' or '11B'</small>
+                </div>
+
+                <button type="submit" class="btn btn-behance btn-block">Create</button>
+
+            </form>
+        </div>
+    </div>
+{% endblock %}
