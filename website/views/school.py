@@ -50,7 +50,7 @@ def school_home():
 
     # If the current user (teacher) is a part of school
     if current_user.school_id:
-        return render_template("school_home.html", user=current_user, school=_school)
+        return render_template("school/school_home.html", user=current_user, school=_school)
 
     return redirect(url_for('school.create_school'))
 
@@ -70,7 +70,7 @@ def create_school():
         register_school(school_name)
         return redirect(url_for('school.school_home'))
 
-    return render_template("create_school.html", user=current_user)
+    return render_template("school/create_school.html", user=current_user)
 
 
 @school.route('/see-students', methods=['GET'])
@@ -97,7 +97,7 @@ def see_students():
     for user in users:
         student_user[user] = Student.query.get(user.id)
 
-    return render_template("school_students_list.html", user=current_user, users=users, school=_school,
+    return render_template("school/school_students_list.html", user=current_user, users=users, school=_school,
                            student_user=student_user)
 
 
@@ -116,7 +116,7 @@ def see_homerooms():
 
     homerooms = Homeroom.query.filter_by(school_id=_school.id)
 
-    return render_template("school_homerooms_list.html", user=current_user, homerooms=homerooms, school=_school)
+    return render_template("school/school_homerooms_list.html", user=current_user, homerooms=homerooms, school=_school)
 
 
 @school.route('/create-homeroom', methods=['GET', 'POST'])
@@ -142,4 +142,4 @@ def create_homeroom():
 
         return redirect(url_for('school.see_homerooms'))
 
-    return render_template("school_create_homeroom.html", user=current_user)
+    return render_template("school/school_create_homeroom.html", user=current_user)

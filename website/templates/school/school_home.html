@@ -5,36 +5,56 @@
 {% block content %}
 
     <div class="row">
+
         <div class="col">
             <div class="card card-nav-tabs">
                 <div class="card-header card-header-warning">
-                    School
+                    School Creation
                 </div>
                 <div class="card-body">
-                    <h4 class="card-title">{{ school.name }}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Testing purposes (redirects you to school create page</h6>
                     <a href="/school/create-school" class="btn btn-primary">Create School</a>
                 </div>
             </div>
         </div>
+
         <div class="col">
             <div class="card card-nav-tabs">
                 <div class="card-header card-header-warning">
-                    School
+                    Students
                 </div>
                 <div class="card-body">
-                    <h4 class="card-title">{{ school.name }}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">A list of all the students from the school</h6>
                     <a href="/school/see-students" class="btn btn-primary">See Students</a>
                 </div>
             </div>
         </div>
+
         <div class="col">
             <div class="card card-nav-tabs">
                 <div class="card-header card-header-warning">
-                    School
+                    Homerooms
                 </div>
                 <div class="card-body">
-                    <h4 class="card-title">{{ school.name }}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">A list of all the homerooms / tutor groups from the school</h6>
                     <a href="/school/see-homerooms" class="btn btn-primary">See Homerooms</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br/>
+
+
+    <div class="row">
+        <div class="col">
+            <div class="card card-nav-tabs">
+                <div class="card-header card-header-warning">
+                    Election
+                </div>
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Start an election with students from the school</h6>
+                    <a href="/school/create-school" class="btn btn-primary">Start Election</a>
                 </div>
             </div>
         </div>

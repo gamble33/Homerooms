@@ -3,14 +3,6 @@ from flask_login import UserMixin
 from sqlalchemy import func
 
 
-def create_student(user_id):
-    data = "Test data"
-    new_student = Student(data=data, user_id=user_id)
-    database.session.add(new_student)
-    database.session.commit()
-    print('Student Created!')
-
-
 # TODO: add constraints for relationship (foreign key)
 class User(database.Model, UserMixin):
     """
@@ -85,5 +77,3 @@ class Student(database.Model):
     """
 
     data: str = database.Column(database.String(150))
-
-
