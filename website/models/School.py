@@ -16,6 +16,8 @@ class School(database.Model):
     Database relationship contains references to all users of this school
     """
 
+    elections = database.relationship('Election')
+
 
 class Homeroom(database.Model):
     """

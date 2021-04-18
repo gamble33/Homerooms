@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}See Elections{% endblock %}
+
+{% block content %}
+
+    {% for election in elections %}
+
+        <div class="card card-nav-tabs">
+            <div class="card-header card-header-warning">
+                {{ election.title }}
+            </div>
+            <div class="card-body card-columns" align="center">
+                <br/>
+                <div class="card-category">
+                    <h4 class="card-title">Student Amount</h4>
+                    <h5 class="h5">{{ election.student_amount }}</h5>
+                </div>
+                <br/>
+                <div class="card-category">
+                    <h4 class="card-title">Candidate Amount</h4>
+                    <h5 class="h5">{{ election.candidate_amount }}</h5>
+                </div>
+                <br/>
+                <div class="card-category">
+                    <h4 class="card-subtitle">Click for more info</h4>
+                    <a href="/school/see-students" class="btn btn-primary">See Election</a>
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+
+{% endblock %}
