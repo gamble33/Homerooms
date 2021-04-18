@@ -6,13 +6,16 @@
 
     {% for current_user in student_user.keys() %}
 
-        <div class="card card-nav-tabs">
-            <div class="card-header card-header-warning">
-                {{ school.name }}
-            </div>
-            <div class="card-body">
-                <h4 class="card-title">{{ current_user.name }}</h4>
-                <a href="/school/see-students" class="btn btn-primary">See Student</a>
+        <!-- TODO: Fix dropdown not working for students -->
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown{{ current_user.id }}"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ current_user.name }}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdown{{ current_user.id }}">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
             </div>
         </div>
 
