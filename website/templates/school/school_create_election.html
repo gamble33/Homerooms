@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Create Election{% endblock %}
+
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <form method="POST">
+
+                <h4 class="h4 text-lg-center" align="center"><small class="text-muted">Create Election</small></h4>
+
+                <div class="form-group">
+                    <label for="title">Election Title</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter Election Title"/>
+                    <small id="emailHelp" class="form-text text-muted">The purpose of the election (Example 'School President Election')</small>
+                </div>
+                 <div class="form-group">
+                    <label for="student-amount">Amount of Students</label>
+                    <input type="number" class="form-control" id="student-amount" name="student-amount" />
+                     <small id="emailHelp" class="form-text text-muted">The amount of students that will be participating in the election</small>
+                </div>
+                 <div class="form-group">
+                    <label for="candidate-amount">Amount of Candidates</label>
+                    <input type="number" class="form-control" id="candidate-amount" name="candidate-amount" />
+                     <small id="emailHelp" class="form-text text-muted">The amount of candidates that this election will have</small>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-chet-input" type="checkbox" id="remember-me" name="remember-me">
+                        Random Checkbox
+                        <span class="form-check-sign">
+                            <span class="check"></span>
+                        </span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Create</button>
+
+            </form>
+        </div>
+    </div>
+{% endblock %}
