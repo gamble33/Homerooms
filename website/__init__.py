@@ -27,7 +27,7 @@ def create_app():
     # Importing models the run initialise classes before database is created
     from .models.User import User, Student, Teacher
     from .models.School import School
-    from .models.Election import  Election, Candidate
+    from .models.Election import Election, Candidate
 
     create_database(app)
 

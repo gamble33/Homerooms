@@ -4,7 +4,11 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
     <!--     Fonts and icons     -->
+    <link rel="apple-touch-icon" sizes="76x76" href="website/templates/black-css/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="website/templates/black-css/assets/img/favicon.png">
+
     <!-- TODO: Fix icons -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
@@ -17,75 +21,8 @@
 
     <title>{% block title %}Base{% endblock %}</title>
 </head>
-<body class="sidebar-mini">
 
-
-<!-- Nav begins here -->
-<nav class="navbar navbar-expand-lg bg-gradient-primary">
-    <div class="container">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
-                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-        </button>
-        <a class="navbar-brand" href="#">Homerooms</a>
-
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-
-                <!-- User is not authenticated (not logged in) -->
-                {% if not user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/auth/login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/auth/sign-up">Sign Up</a>
-                    </li>
-
-                    <!-- User is authenticated (logged in) -->
-                {% else %}
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
-                    </li>
-
-                    {% if not user.is_teacher %}
-
-
-                        <!-- User is a student (not teacher) -->
-                    {% else %}
-
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/school/">School <span
-                                    class="sr-only">(current)</span></a>
-                        </li>
-
-                    {% endif %}
-
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/auth/logout">Logout</a>
-                    </li>
-
-                {% endif %}
-
-            </ul>
-
-            <form class="form-inline ml-auto">
-                <div class="form-group no-border">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-link btn-icon btn-round">
-                    <i class="tim-icons icon-zoom-split"></i>
-                </button>
-            </form>
-
-        </div>
-    </div>
-</nav>
-<!-- Nav ends here -->
-
+<body class="sidebar-mini ">
 
 <!-- Flash Messages -->
 {% with messages = get_flashed_messages(with_categories=true) %}
@@ -125,84 +62,14 @@
 {% endwith %}
 <!-- End of flash messages -->
 
+<div class="content">
 
-<div class="wrapper">
+    {% block content %}
+    {% endblock %}
 
-
-    <!-- Sidebar -->
-    <div class="navbar-minimize-fixed">
-        <button class="minimize-sidebar btn btn-link btn-just-icon">
-            <i class="tim-icons icon-align-center visible-on-sidebar-regular text-muted"></i>
-            <i class="tim-icons icon-bullet-list-67 visible-on-sidebar-mini text-muted"></i>
-        </button>
-    </div>
-    <div class="sidebar">
-        <div class="sidebar-wrapper">
-            <div class="logo">
-                <a href="javascript:void(0)" class="simple-text logo-mini">
-                    GS
-                </a>
-                <a href="javascript:void(0)" class="simple-text logo-normal">
-                    Homerooms
-                </a>
-            </div>
-            <ul class="nav">
-                <li class="active">
-                    <a href="/">
-                        <i class="tim-icons icon-atom"></i>
-                        <p>Home</p>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <!-- Sidebar ends here -->
-
-
-    <div class="main-panel">
-
-
-        <!-- Content (Inheritable) -->
-        <div class="content">
-                {% block content %}
-                {% endblock %}
-        </div>
-        <!-- End of content -->
-
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container-fluid">
-            <ul class="nav">
-                <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">
-                        Gamigo Studios
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">
-                        About Us
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">
-                        Blog
-                    </a>
-                </li>
-            </ul>
-            <div class="copyright">
-                ©
-                <script>
-                    document.write(new Date().getFullYear())
-                </script>
-                made<i class="tim-icons icon-heart-2"></i> by
-                <a href="javascript:void(0)" target="_blank">GamigoStudios</a> for a better education.
-            </div>
-        </div>
-    </footer>
-    <!-- End of Footer -->
 </div>
+
+
 <!--   Core JS Files   -->
 <script src="black-css/assets/js/core/jquery.min.js" type="text/javascript"></script>
 <script src="black-css/assets/js/core/popper.min.js" type="text/javascript"></script>
@@ -255,5 +122,14 @@
 
 <script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-46172202-12"></script>
+
+<noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=111649226022273&ev=PageView&noscript=1"/>
+</noscript>
+
 </body>
+
 </html>
