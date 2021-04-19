@@ -101,3 +101,5 @@ fabric.properties
 
 # Ignore .database
 .database
+/website/database.database
+/website/templates/black-css/
